@@ -1,7 +1,4 @@
 <details open>
-<summary><b> [SYSTEM_ACCESS] :: DECRYPT_README.md</b></summary>
-
-<br/>
 
 <div align="center">
 
