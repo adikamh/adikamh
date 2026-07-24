@@ -138,8 +138,8 @@
 
 <div align="center">
 
-<a href="#"><img src="https://img.shields.io/badge/LinkedIn-00F2FE?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0f0c29" /></a>
-<a href="#"><img src="https://img.shields.io/badge/Instagram-FF00E4?style=for-the-badge&logo=instagram&logoColor=white&labelColor=0f0c29" /></a>
+<a href="https://www.linkedin.com/in/adika-muhammad-haikal/"><img src="https://img.shields.io/badge/LinkedIn-00F2FE?style=for-the-badge&logo=linkedin&logoColor=white&labelColor=0f0c29" /></a>
+<a href="https://www.instagram.com/haikal.ad78/"><img src="https://img.shields.io/badge/Instagram-FF00E4?style=for-the-badge&logo=instagram&logoColor=white&labelColor=0f0c29" /></a>
 <a href="mailto:haikaladika272@gmail.com"><img src="https://img.shields.io/badge/Email-4facfe?style=for-the-badge&logo=gmail&logoColor=white&labelColor=0f0c29" /></a>
 <a href="https://github.com/adikamh"><img src="https://img.shields.io/badge/GitHub-39FF14?style=for-the-badge&logo=github&logoColor=white&labelColor=0f0c29" /></a>
 
