@@ -1,8 +1,8 @@
 // Mocks the GitHub GraphQL response so we can sanity-check generate.mjs
 // without needing a real token/user.
-process.env.GH_USERNAME = "octocat";
+process.env.GH_USERNAME = "adikamh";
 process.env.GH_TOKEN = "fake-token-for-preview";
-process.env.OUTPUT_PATH = "dist/preview.svg";
+process.env.OUTPUT_PATH = "dist/github-jet.svg";
 
 const COLORS = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
 
