@@ -85,12 +85,12 @@
 
 <div align="center">
 
-<img src="https://github-readme-stats.vercel.app/api?username=adikamh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&icon_color=4facfe&text_color=c9d1d9" width="49%" />
-<img src="https://github-readme-stats.vercel.app/api/top-langs/?username=adikamh&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&text_color=c9d1d9" width="45%" />
+<img src="https://github-readme-stats-anuraghazra.vercel.app/api?username=adikamh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&icon_color=4facfe&text_color=c9d1d9" width="49%" />
+<img src="https://github-readme-stats-anuraghazra.vercel.app/api/top-langs/?username=adikamh&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&text_color=c9d1d9" width="45%" />
 
 <br/>
 
-<img src="https://github-readme-streak-stats.herokuapp.com/?user=adikamh&theme=tokyonight&hide_border=true&background=0d1117&stroke=00f2fe&ring=4facfe&fire=ff00e4&currStreakLabel=00f2fe" width="60%" />
+<img src="https://streak-stats.demolab.com/?user=adikamh&theme=tokyonight&hide_border=true&background=0d1117&stroke=00f2fe&ring=4facfe&fire=ff00e4&currStreakLabel=00f2fe" width="60%" />
 
 <br/><br/>
 
@@ -105,7 +105,7 @@
 ## 🏆 ACHIEVEMENTS_UNLOCKED
 
 <div align="center">
-  <img src="https://github-profile-trophy.vercel.app/?username=adikamh&theme=algolia&no-frame=true&no-bg=true&margin-w=12&row=1" />
+  <img src="https://github-profile-trophy-zeta.vercel.app/?username=adikamh&theme=algolia&no-frame=true&no-bg=true&margin-w=12&row=1" />
 </div>
 
 <br/>
