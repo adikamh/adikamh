@@ -85,8 +85,8 @@
 
 <div align="center">
 
-<img src="https://github-readme-stats-anuraghazra.vercel.app/api?username=adikamh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&icon_color=4facfe&text_color=c9d1d9" width="49%" />
-<img src="https://github-readme-stats-anuraghazra.vercel.app/api/top-langs/?username=adikamh&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&text_color=c9d1d9" width="45%" />
+<img src="https://github-readme-stats-one-bice.vercel.app/api?username=adikamh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&icon_color=4facfe&text_color=c9d1d9" width="49%" />
+<img src="https://github-readme-stats-one-bice.vercel.app/api/top-langs/?username=adikamh&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&text_color=c9d1d9" width="45%" />
 
 <br/>
 
