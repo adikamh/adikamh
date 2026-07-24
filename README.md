@@ -15,11 +15,6 @@
 
 <br/>
 
-<!-- Rocket Shooting Animation (file terpisah, taruh di repo yang sama) -->
-<img src="./rocket-cyberpunk.svg" width="100%" alt="Rocket firing animation" />
-
-<br/>
-
 <!-- Social Badges -->
 <a href="https://github.com/adikamh">
   <img src="https://img.shields.io/badge/GITHUB-adikamh-00F2FE?style=for-the-badge&logo=github&logoColor=white&labelColor=0f0c29" />
