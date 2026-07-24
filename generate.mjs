@@ -136,12 +136,13 @@ function pickTargets(cells) {
     .sort((a, b) => a.col - b.col || a.row - b.row);
 }
 
-// Map a column index to the keyTime fraction along ONE direction of travel
-// (forward pass spans keyTime 0 -> 0.5, backward spans 0.5 -> 1).
-function keyTimeForCol(col, direction) {
-  const span = 0.46; // leave a little headroom at both ends
-  const t = 0.02 + (col / (COLS - 1)) * span;
-  return direction === "forward" ? t : 1 - t;
+// Calculates the exact keyTime when the jet's X position coincides with column `col`
+function jetTimeForCol(col, dir) {
+  const cx = GRID_X + col * STEP + CELL / 2;
+  const dist = JET_X_END - JET_X_START;
+  let t = (cx - JET_X_START) / (2 * dist);
+  t = Math.max(0.01, Math.min(0.49, t));
+  return dir === "forward" ? t : 1.0 - t;
 }
 
 function fmt(n) {
@@ -149,23 +150,32 @@ function fmt(n) {
 }
 
 function buildGrid(cells, targets) {
-  const targetKey = new Set(targets.map((t) => `${t.col}-${t.row}`));
+  const targetMap = new Map();
+  for (const t of targets) {
+    targetMap.set(`${t.col}-${t.row}`, t);
+  }
+
   let svg = "";
   for (const c of cells) {
-    const isTarget = targetKey.has(`${c.col}-${c.row}`);
+    const isTarget = targetMap.has(`${c.col}-${c.row}`);
     if (!isTarget) {
       svg += `<rect x="${c.x.toFixed(2)}" y="${c.y.toFixed(2)}" width="${CELL}" height="${CELL}" rx="2" ry="2" fill="${c.color}"/>\n`;
       continue;
     }
-    // Flash brighter twice: once as the jet passes forward, once on the way back
-    const tFwd = keyTimeForCol(c.col, "forward");
-    const tBack = keyTimeForCol(c.col, "backward");
-    const [t1, t2] = [Math.min(tFwd, tBack), Math.max(tFwd, tBack)];
-    const dur = 0.006;
+
+    const targetY = c.y + CELL / 2;
+    const dt_bullet = 0.006 + ((PAD_Y - targetY) / PAD_Y) * 0.012;
+
+    const tFwdImpact = jetTimeForCol(c.col, "forward") + dt_bullet;
+    const tBackImpact = jetTimeForCol(c.col, "backward") + dt_bullet;
+
+    const [t1, t2] = [Math.min(tFwdImpact, tBackImpact), Math.max(tFwdImpact, tBackImpact)];
+    const dur = 0.015;
+
     svg += `<rect x="${c.x.toFixed(2)}" y="${c.y.toFixed(2)}" width="${CELL}" height="${CELL}" rx="2" ry="2" fill="${c.color}">` +
       `<animate attributeName="fill" dur="${LOOP_DUR}s" repeatCount="indefinite" ` +
       `keyTimes="0;${fmt(t1)};${fmt(t1 + dur)};${fmt(t2)};${fmt(t2 + dur)};1" ` +
-      `values="${c.color};${c.color};${FLASH_COLOR};${c.color};${FLASH_COLOR};${c.color}"/>` +
+      `values="${c.color};${FLASH_COLOR};${c.color};${FLASH_COLOR};${c.color};${c.color}"/>` +
       `</rect>\n`;
   }
   return svg;
@@ -174,31 +184,33 @@ function buildGrid(cells, targets) {
 function buildBulletsAndBlasts(targets) {
   let bullets = "";
   let blasts = "";
-  const dur = 0.006;
 
   for (const dir of ["forward", "backward"]) {
     const ordered = dir === "forward" ? targets : [...targets].reverse();
     for (const c of ordered) {
-      const t = keyTimeForCol(c.col, dir);
-      const rise = t - dur * 3;
-      const arrive = t;
-      const fadeStart = t;
-      const fadeEnd = t + dur;
       const cx = fmt(c.x + CELL / 2);
       const targetY = fmt(c.y + CELL / 2);
 
+      const tLaunch = jetTimeForCol(c.col, dir);
+      const dt_bullet = 0.006 + ((PAD_Y - targetY) / PAD_Y) * 0.012;
+      const tImpact = tLaunch + dt_bullet;
+      const tFadeEnd = tImpact + 0.005;
+
+      // Rocket/bullet launches upwards from jet Y (PAD_Y) exactly when jet reaches column cx (tLaunch)
       bullets += `<circle cx="${cx}" cy="${PAD_Y}" r="2.4" fill="${BULLET_COLOR}">` +
         `<animate attributeName="cy" dur="${LOOP_DUR}s" repeatCount="indefinite" ` +
-        `keyTimes="0;${fmt(rise)};${fmt(arrive)};1" values="${PAD_Y};${PAD_Y};${targetY};${targetY}"/>` +
+        `keyTimes="0;${fmt(tLaunch)};${fmt(tImpact)};1" values="${PAD_Y};${PAD_Y};${targetY};${targetY}"/>` +
         `<animate attributeName="opacity" dur="${LOOP_DUR}s" repeatCount="indefinite" ` +
-        `keyTimes="0;${fmt(rise)};${fmt(arrive)};${fmt(fadeEnd)};1" values="0;1;1;0;0"/>` +
+        `keyTimes="0;${fmt(tLaunch)};${fmt(tLaunch + 0.001)};${fmt(tImpact)};${fmt(tFadeEnd)};1" values="0;1;1;1;0;0"/>` +
         `</circle>\n`;
 
-      blasts += `<circle cx="${cx}" cy="${targetY}" r="0" fill="none" stroke="${BLAST_COLOR}" stroke-width="1.6" opacity="0">` +
+      // Explosion/blast triggers at target cell exactly on rocket impact (tImpact)
+      const blastEnd = tImpact + 0.02;
+      blasts += `<circle cx="${cx}" cy="${targetY}" r="0" fill="none" stroke="${BLAST_COLOR}" stroke-width="1.8" opacity="0">` +
         `<animate attributeName="r" dur="${LOOP_DUR}s" repeatCount="indefinite" ` +
-        `keyTimes="0;${fmt(arrive)};${fmt(arrive + dur * 3)};1" values="0;1;9;9"/>` +
+        `keyTimes="0;${fmt(tImpact)};${fmt(blastEnd)};1" values="0;0;10;10"/>` +
         `<animate attributeName="opacity" dur="${LOOP_DUR}s" repeatCount="indefinite" ` +
-        `keyTimes="0;${fmt(arrive)};${fmt(arrive + dur * 3)};1" values="0;1;1;0"/>` +
+        `keyTimes="0;${fmt(tImpact)};${fmt(tImpact + 0.002)};${fmt(blastEnd)};1" values="0;1;1;0;0"/>` +
         `</circle>\n`;
     }
   }
