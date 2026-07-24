@@ -74,7 +74,10 @@
 
 <!-- Skill icons animated -->
 <div align="center">
-  <img src="https://skillicons.dev/icons?i=react,flutter,dart,java,py,js,ts,nextjs,nodejs,supabase,firebase,cloudflare,gcp,mongodb,docker,git,linux,tailwind&theme=dark" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://skillicons.dev/icons?i=react,flutter,dart,java,py,js,ts,nextjs,nodejs,supabase,firebase,cloudflare,gcp,mongodb,docker,git,linux,tailwind&theme=dark">
+    <img alt="Tech Stack Icons" src="https://skillicons.dev/icons?i=react,flutter,dart,java,py,js,ts,nextjs,nodejs,supabase,firebase,cloudflare,gcp,mongodb,docker,git,linux,tailwind&theme=light" />
+  </picture>
 </div>
 
 <br/>
@@ -85,16 +88,28 @@
 
 <div align="center">
 
-<img src="https://github-readme-stats-one-bice.vercel.app/api?username=adikamh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&icon_color=4facfe&text_color=c9d1d9" width="49%" />
-<img src="https://github-readme-stats-one-bice.vercel.app/api/top-langs/?username=adikamh&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&text_color=c9d1d9" width="45%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-one-bice.vercel.app/api?username=adikamh&show_icons=true&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&icon_color=4facfe&text_color=c9d1d9">
+  <img alt="GitHub Stats" src="https://github-readme-stats-one-bice.vercel.app/api?username=adikamh&show_icons=true&theme=default&hide_border=true&bg_color=f8fafc&title_color=0284c7&icon_color=0284c7&text_color=1e293b" width="49%" />
+</picture>
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-stats-one-bice.vercel.app/api/top-langs/?username=adikamh&layout=compact&theme=tokyonight&hide_border=true&bg_color=0d1117&title_color=00f2fe&text_color=c9d1d9">
+  <img alt="Top Languages" src="https://github-readme-stats-one-bice.vercel.app/api/top-langs/?username=adikamh&layout=compact&theme=default&hide_border=true&bg_color=f8fafc&title_color=0284c7&text_color=1e293b" width="45%" />
+</picture>
 
 <br/>
 
-<img src="https://streak-stats.demolab.com/?user=adikamh&theme=tokyonight&hide_border=true&background=0d1117&stroke=00f2fe&ring=4facfe&fire=ff00e4&currStreakLabel=00f2fe" width="60%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://streak-stats.demolab.com/?user=adikamh&theme=tokyonight&hide_border=true&background=0d1117&stroke=00f2fe&ring=4facfe&fire=ff00e4&currStreakLabel=00f2fe">
+  <img alt="Streak Stats" src="https://streak-stats.demolab.com/?user=adikamh&theme=swift&hide_border=true&background=f8fafc&stroke=0284c7&ring=0284c7&fire=7c3aed&currStreakLabel=0284c7" width="60%" />
+</picture>
 
 <br/><br/>
 
-<img src="https://github-readme-activity-graph.vercel.app/graph?username=adikamh&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=00f2fe&line=4facfe&point=ff00e4" width="90%" />
+<picture>
+  <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=adikamh&theme=tokyo-night&hide_border=true&bg_color=0d1117&color=00f2fe&line=4facfe&point=ff00e4">
+  <img alt="Activity Graph" src="https://github-readme-activity-graph.vercel.app/graph?username=adikamh&theme=minimal&hide_border=true&bg_color=f8fafc&color=0284c7&line=7c3aed&point=059669" width="90%" />
+</picture>
 
 </div>
 
@@ -114,11 +129,17 @@
 
 <div align="center">
 
-  <img src="https://raw.githubusercontent.com/adikamh/adikamh/main/dist/github-jet.svg" alt="GitHub Jet Heatmap" width="100%" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://raw.githubusercontent.com/adikamh/adikamh/main/dist/github-jet-dark.svg">
+    <img alt="GitHub Jet Heatmap" src="https://raw.githubusercontent.com/adikamh/adikamh/main/dist/github-jet-light.svg" width="100%" />
+  </picture>
 
   <br/><br/>
 
-  <img src="https://github-readme-activity-graph.vercel.app/graph?username=adikamh&bg_color=0d1117&color=00f2fe&line=ff00e4&point=4facfe&area=true&hide_border=true&custom_title=CONTRIBUTION%20MATRIX" width="90%" />
+  <picture>
+    <source media="(prefers-color-scheme: dark)" srcset="https://github-readme-activity-graph.vercel.app/graph?username=adikamh&bg_color=0d1117&color=00f2fe&line=ff00e4&point=4facfe&area=true&hide_border=true&custom_title=CONTRIBUTION%20MATRIX">
+    <img alt="Contribution Matrix Graph" src="https://github-readme-activity-graph.vercel.app/graph?username=adikamh&bg_color=f8fafc&color=0284c7&line=7c3aed&point=059669&area=true&hide_border=true&custom_title=CONTRIBUTION%20MATRIX" width="90%" />
+  </picture>
 
 </div>
 
