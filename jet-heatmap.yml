@@ -32,4 +32,4 @@ jobs:
         uses: stefanzweifel/git-auto-commit-action@v5
         with:
           commit_message: "chore: update jet heatmap SVG"
-          file_pattern: dist/github-jet*.svg
+          file_pattern: dist/github-jet.svg
