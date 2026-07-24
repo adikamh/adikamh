@@ -43,16 +43,6 @@
 </a>
 
 <br/><br/>
-
-```yaml
-[SYSTEM_STATUS]: ONLINE
-[IDENTITY]:      ADIKA MUHAMMAD HAIKAL
-[LOCATION]:      NET_CITY
-[PRIMARY_CORE]:  FULL-STACK & CLOUD ARCHITECT
-[UPTIME]:        99.9%
-[CLEARANCE]:     ROOT_ACCESS
-```
-
 <br/>
 
 ## ⚡ TECH_STACK.exe
