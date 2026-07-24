@@ -15,7 +15,7 @@
 import fs from "node:fs";
 import path from "node:path";
 
-const USERNAME = process.env.GH_USERNAME;
+const USERNAME = process.env.GH_USERNAME || "adikamh";
 const TOKEN = process.env.GH_TOKEN || process.env.GITHUB_TOKEN;
 const OUTPUT = process.env.OUTPUT_PATH || "dist/github-jet.svg";
 const COLS = 34; // weeks shown, matches the reference design
@@ -34,15 +34,6 @@ const FLASH_COLOR = "#39d353";
 const BULLET_COLOR = "#7ee787";
 const BLAST_COLOR = "#56d364";
 const PAD_Y = 128; // where bullets launch from (just under the grid)
-
-if (!USERNAME) {
-  console.error("Missing GH_USERNAME env var");
-  process.exit(1);
-}
-if (!TOKEN) {
-  console.error("Missing GH_TOKEN / GITHUB_TOKEN env var");
-  process.exit(1);
-}
 
 const QUERY = `
   query($login: String!) {
@@ -63,20 +54,48 @@ const QUERY = `
 `;
 
 async function fetchWeeks() {
-  const res = await fetch("https://api.github.com/graphql", {
-    method: "POST",
-    headers: {
-      Authorization: `bearer ${TOKEN}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({ query: QUERY, variables: { login: USERNAME } }),
-  });
+  if (TOKEN && !TOKEN.startsWith("fake")) {
+    try {
+      const res = await fetch("https://api.github.com/graphql", {
+        method: "POST",
+        headers: {
+          Authorization: `bearer ${TOKEN}`,
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ query: QUERY, variables: { login: USERNAME } }),
+      });
+      if (res.ok) {
+        const json = await res.json();
+        if (!json.errors && json.data?.user?.contributionsCollection?.contributionCalendar?.weeks) {
+          return json.data.user.contributionsCollection.contributionCalendar.weeks;
+        }
+      }
+    } catch (err) {
+      console.warn("GraphQL fetch failed, using public API fallback:", err.message);
+    }
+  }
+
+  console.log(`Fetching real contribution calendar for ${USERNAME}...`);
+  const res = await fetch(`https://github-contributions-api.jogruber.de/v4/${USERNAME}?y=last`);
   if (!res.ok) {
-    throw new Error(`GitHub API error ${res.status}: ${await res.text()}`);
+    throw new Error(`Failed to fetch public contributions: ${res.statusText}`);
   }
   const json = await res.json();
-  if (json.errors) throw new Error(JSON.stringify(json.errors));
-  return json.data.user.contributionsCollection.contributionCalendar.weeks;
+  const contributions = json.contributions || [];
+
+  const COLORS = ["#161b22", "#0e4429", "#006d32", "#26a641", "#39d353"];
+  const recentDays = contributions.slice(-(COLS * ROWS));
+  const weeks = [];
+  for (let i = 0; i < recentDays.length; i += ROWS) {
+    const chunk = recentDays.slice(i, i + ROWS);
+    const contributionDays = chunk.map(day => ({
+      date: day.date,
+      contributionCount: day.count,
+      color: COLORS[day.level] || "#161b22",
+    }));
+    weeks.push({ contributionDays });
+  }
+  return weeks;
 }
 
 function buildCells(weeks) {
